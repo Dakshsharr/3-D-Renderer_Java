@@ -28,7 +28,7 @@ public final class Vec4{
     //perspectivedivide
     public Vec3 perspectiveDivide(){
         if(w == 0){
-            throw new ArithmeticException("perspectiveDivide called with w = 0")
+            throw new ArithmeticException("perspectiveDivide called with w = 0");
         }
         return new Vec3(x/w, y/w, z/w);
     }

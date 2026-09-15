@@ -45,7 +45,7 @@ public final class Vec3{
     public Vec3 normalize() {
         double len = length();
         if (len == 0) {
-            return ZERO;   
+            return new Vec3(0,0,0);   
         }
         return new Vec3(x / len, y / len, z / len);
     }
