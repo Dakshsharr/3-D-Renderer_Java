@@ -29,6 +29,56 @@ public final class Framebuffer{
         }
         pixels[y*width + x] =color;
     }
+    //using bresenham's line drawing algo(draws line between 2 points)
+    public void drawLine(int x0, int y0, int x1, int y1, int color){
+        int dx = Math.abs(x1-x0);
+        int dy = Math.abs(y1-y0);
+        int sx = (x0<x1)? 1 : -1;
+        int sy = (y0<y1)? 1: -1;
+        int err = dx-dy;
+        int x = x0;
+        int y = y0;
+        while(true){
+            setPixel(x,y,color);
+            if(x == x1 && y == y1){
+                break;
+            }
+            int e2 = 2*err;
+            if (e2 > -dy) {
+                err-=dy;
+                x+=sx;
+            }
+            if(e2 < dx){
+                err+=dx;
+                y+=sy;
+            }
+
+        }
+    }
+    private double edge(int ax, int ay, int bx, int by, int px, int py) {
+        return (bx - ax) * (py - ay) - (by - ay) * (px - ax);
+    }
+    public void fillTriangle(int x0, int y0, int x1, int y1, int x2, int y2, int color) {
+    int minX = Math.min(x0, Math.min(x1, x2));
+    int maxX = Math.max(x0, Math.max(x1, x2));
+    int minY = Math.min(y0, Math.min(y1, y2));
+    int maxY = Math.max(y0, Math.max(y1, y2));
+
+    for (int y = minY; y <= maxY; y++) {
+        for (int x = minX; x <= maxX; x++) {
+            double e0 = edge(x1, y1, x2, y2, x, y);
+            double e1 = edge(x2, y2, x0, y0, x, y);
+            double e2 = edge(x0, y0, x1, y1, x, y);
+
+            boolean allPositive = e0 >= 0 && e1 >= 0 && e2 >= 0;
+            boolean allNegative = e0 <= 0 && e1 <= 0 && e2 <= 0;
+
+            if (allPositive || allNegative) {
+                setPixel(x, y, color);
+            }
+        }
+    }
+}   
     public BufferedImage getImage() {
     return image;
     }
