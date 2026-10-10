@@ -81,7 +81,7 @@ public final class Main {
                 int x2 = (int)(cx + (p2.x / z2) * scale);
                 int y2 = (int)(cy - (p2.y / z2) * scale);
 
-                framebuffer.fillTriangle(x0, y0, x1, y1, x2, y2, colors[t]);
+                framebuffer.fillTriangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, colors[t]);
             }
 
             panel.repaint();
