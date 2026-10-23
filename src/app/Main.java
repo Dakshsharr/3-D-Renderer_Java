@@ -28,8 +28,6 @@ public final class Main {
             {3,2,6}, {3,6,7}
         };
 
-        // one different color per triangle, just so you can visually
-        // tell them apart while nothing is shaded yet
         int[] colors = {
             0xFF5555, 0xFF5555,
             0x55FF55, 0x55FF55,
@@ -55,9 +53,12 @@ public final class Main {
         double cy = framebuffer.getHeight() / 2.0;
         double camZ = 5;
 
+        Vec3 cameraPos = new Vec3(0, 0, -camZ);
+
         while (true) {
             framebuffer.clear(0x202020);
             Mat4 rotation = Mat4.rotationY(angle);
+            int drawn = 0;
 
             for (int t = 0; t < triangles.length; t++) {
                 int[] tri = triangles[t];
@@ -69,6 +70,14 @@ public final class Main {
                 p0 = rotation.transform(p0);
                 p1 = rotation.transform(p1);
                 p2 = rotation.transform(p2);
+
+                
+                Vec3 normal = p2.sub(p0).cross(p1.sub(p0));
+                Vec3 toCamera = cameraPos.sub(p0);
+                if (normal.dot(toCamera) <= 0) {
+                    continue;   
+                }
+                drawn++;
 
                 double z0 = p0.z + camZ;
                 double z1 = p1.z + camZ;
@@ -84,6 +93,7 @@ public final class Main {
                 framebuffer.fillTriangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, colors[t]);
             }
 
+            frame.setTitle("3D renderer - triangles drawn: " + drawn);
             panel.repaint();
             angle += 0.02;
 
