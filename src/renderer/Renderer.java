@@ -96,11 +96,11 @@ public final class Renderer {
             color);
     }
 
-    private int screenX(Vec3 ndc) {
-        return (int) ((ndc.x * 0.5 + 0.5) * width);
+    private double screenX(Vec3 ndc) {
+        return (ndc.x * 0.5 + 0.5) * width;
     }
 
-    private int screenY(Vec3 ndc) {
-        return (int) ((0.5 - ndc.y * 0.5) * height);
+    private double screenY(Vec3 ndc) {
+        return (0.5 - ndc.y * 0.5) * height;
     }
 }
