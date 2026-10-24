@@ -40,6 +40,28 @@ public final class Mat4{
             0, 0, 0, 1
         });
     }
+    public static Mat4 lookAt(Vec3 eye, Vec3 target, Vec3 up) {
+        Vec3 f = target.sub(eye).normalize();   // forward
+        Vec3 r = up.cross(f).normalize();       // right
+        Vec3 u = f.cross(r);                    // true up
+        return new Mat4(new double[] {
+            r.x, r.y, r.z, -r.dot(eye),
+            u.x, u.y, u.z, -u.dot(eye),
+            f.x, f.y, f.z, -f.dot(eye),
+            0,   0,   0,   1
+        });
+    }
+
+    public static Mat4 perspective(double fovRadians, double aspect, double near, double far) {
+        double t = 1.0 / Math.tan(fovRadians / 2);
+        double range = far - near;
+        return new Mat4(new double[] {
+            t / aspect, 0, 0,           0,
+            0,          t, 0,           0,
+            0,          0, far / range, -far * near / range,
+            0,          0, 1,           0
+        });
+    }
     //rotation in X,Y and Z
     public static Mat4 rotationX(double radians) {
         double c = Math.cos(radians);

@@ -2,6 +2,8 @@ package math;
 
 public final class Vec3{
     public final double x, y, z;
+    public static final Vec3 ZERO = new Vec3(0, 0, 0);
+    public static final Vec3 UP   = new Vec3(0, 1, 0);
     //Constructor
     public Vec3(double x, double y, double z){
         this.x = x;

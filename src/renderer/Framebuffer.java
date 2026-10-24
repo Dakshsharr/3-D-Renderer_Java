@@ -59,7 +59,7 @@ public final class Framebuffer{
         }
     }
     private double edge(int ax, int ay, int bx, int by, int px, int py) {
-        return (bx - ax) * (py - ay) - (by - ay) * (px - ax);
+        return (double) (bx - ax) * (py - ay) - (by - ay) * (px - ax);
     }
     public void fillTriangle(int x0, int y0, double z0, int x1, int y1, double z1, int x2, int y2, double z2, int color) {
 

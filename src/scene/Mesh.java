@@ -51,11 +51,11 @@ public final class Mesh {
         };
 
         int[] colors = {
-            0xFF5555, 0xFF5555,
-            0x55FF55, 0x55FF55,
-            0x5555FF, 0x5555FF,
-            0xFFFF55, 0xFFFF55,
-            0xFF55FF, 0xFF55FF,
+            0x55FFFF, 0x55FFFF,
+            0x55FFFF, 0x55FFFF,
+            0x55FFFF, 0x55FFFF,
+            0x55FFFF, 0x55FFFF,
+            0x55FFFF, 0x55FFFF,
             0x55FFFF, 0x55FFFF
         };
 
