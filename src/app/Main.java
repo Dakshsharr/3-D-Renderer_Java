@@ -20,7 +20,7 @@ public final class Main {
         RenderPanel panel = new RenderPanel(width, height);
         Renderer renderer = new Renderer(backBuffer);
 
-        Mesh model = ObjLoader.load("../models/sphere.obj");
+        Mesh model = ObjLoader.load("../models/teapot.obj");
         Light light = new Light(new Vec3(-0.5, 0.7, -1.0), 0.2);
         Camera camera = new Camera(
             new Vec3(0, 0, -5),
