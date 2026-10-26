@@ -8,6 +8,7 @@ import scene.Light;
 import scene.Mesh;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import scene.ObjLoader;
 
 public final class Main {
 
@@ -19,7 +20,7 @@ public final class Main {
         RenderPanel panel = new RenderPanel(width, height);
         Renderer renderer = new Renderer(backBuffer);
 
-        Mesh cube = Mesh.cube();
+        Mesh model = ObjLoader.load("../models/sphere.obj");
         Light light = new Light(new Vec3(-0.5, 0.7, -1.0), 0.2);
         Camera camera = new Camera(
             new Vec3(0, 0, -5),
@@ -41,7 +42,7 @@ public final class Main {
         double angle = 0;
 
         while (true) {
-            int drawn = renderer.render(cube, light, camera, angle);
+            int drawn = renderer.render(model, light, camera, angle);
             panel.present(backBuffer);
 
             String title = "3D renderer - triangles drawn: " + drawn;
